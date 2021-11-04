@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+h1 {
+	color: #66bbff;
+}
+
+.botao {
+	background-color: #66bbff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #fff;
+}
