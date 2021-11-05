@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Atualizar Passagem</h1>
-	<form name="formPassagem" action="">
+	<form name="formPassagem" action="update">
 		<table>
 			<tr>
 				<td><input type="text" name="id" class="caixa1" id="id"

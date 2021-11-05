@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.dao.PassagemDAO;
 import model.Passagem;
 
-@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem"})
+@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem", "/update"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -36,6 +36,10 @@ public class MainController extends HttpServlet {
 		case "/listarPassagem":
 			Passagem passagem = procurarPassagem(request, response);
 			listarPassagem(passagem, request, response);
+			
+			break;
+		case "/update":
+			atualizarPassagem(request, response);
 			
 			break;
 		default:
@@ -69,6 +73,7 @@ public class MainController extends HttpServlet {
 		PassagemDAO.insert(passagem);
 	}
 	
+	//Devolve um objeto do tipo Passagem procurando pelo id
 	private Passagem procurarPassagem(HttpServletRequest request, HttpServletResponse response) {
 		//Recebimento do id do contato que será editado
 		Integer id = Integer.valueOf(request.getParameter("id"));
@@ -76,6 +81,7 @@ public class MainController extends HttpServlet {
 		return PassagemDAO.findById(id);
 	}
 	
+	//Preenche os campos do editar.jsp
 	private void listarPassagem(Passagem passagem, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Preencher os campos vazios do editar.jsp
 		request.setAttribute("id", passagem.getId());
@@ -87,6 +93,15 @@ public class MainController extends HttpServlet {
 		//Encaminhar ao documento editar.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 		rd.forward(request, response);
+	}
+	
+	//Atualiza uma Passagem de acordo com os dados dos campos
+	private void atualizarPassagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("id"));
+		System.out.println(request.getParameter("nome"));
+		System.out.println(request.getParameter("origem"));
+		System.out.println(request.getParameter("destino"));
+		System.out.println(request.getParameter("valor"));
 	}
 	
 }
