@@ -1,26 +1,17 @@
 package application;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.List;
 
+import controller.dao.PassagemDAO;
 import model.Passagem;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
-		Passagem passagem = new Passagem(null, "Gustavo", "SP", "ES", 25.00);
+		List<Passagem> passagens = PassagemDAO.findAll();
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("passagens");
-		EntityManager em = factory.createEntityManager();
-		
-		System.out.println(passagem);
-		
-		em.getTransaction().begin();
-		em.persist(passagem);
-		em.getTransaction().commit();
-		em.close();
+		passagens.forEach(System.out::println);
 		
 	}
 

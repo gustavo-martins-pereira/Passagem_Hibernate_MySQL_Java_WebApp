@@ -1,5 +1,7 @@
 package controller.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,15 +19,22 @@ public class PassagemDAO {
 		}
 	}
 	
+	//Inserir uma Passagem
 	public static void insert(Passagem passagem) {
-		System.out.println(em);
-		
 		createEntityManager();
 		
 		em.getTransaction().begin();
 		em.persist(passagem);
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	//Listar todas as Passagens
+	public static List<Passagem> findAll() {
+		createEntityManager();
+		
+		String jpql = "SELECT p FROM Passagem p";
+		return em.createQuery(jpql, Passagem.class).getResultList();
 	}
 	
 }

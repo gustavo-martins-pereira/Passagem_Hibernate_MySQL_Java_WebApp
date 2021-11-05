@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +40,9 @@ public class MainController extends HttpServlet {
 	
 	//Listar passagens
 	protected void passagens(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("passagens.jsp");
+		List<Passagem> passagens = PassagemDAO.findAll();
+		
+		passagens.forEach(System.out::println);
 	}
 	
 	//Nova Passagem
