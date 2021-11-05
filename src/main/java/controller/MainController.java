@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.dao.PassagemDAO;
 import model.Passagem;
 
-@WebServlet(urlPatterns = {"/MainController", "/main", "/insert"})
+@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/findPassagem"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -31,6 +31,11 @@ public class MainController extends HttpServlet {
 		case "/insert":
 			novaPassagem(request, response);
 			response.sendRedirect("main");
+			
+			break;
+		case "/findPassagem":
+			procurarPassagem(request, response);
+			System.out.println(action);
 			
 			break;
 		default:
@@ -62,6 +67,13 @@ public class MainController extends HttpServlet {
 		System.out.println(passagem);
 		
 		PassagemDAO.insert(passagem);
+	}
+	
+	private Passagem procurarPassagem(HttpServletRequest request, HttpServletResponse response) {
+		//Recebimento do id do contato que será editado
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		return PassagemDAO.findById(id);
 	}
 	
 }

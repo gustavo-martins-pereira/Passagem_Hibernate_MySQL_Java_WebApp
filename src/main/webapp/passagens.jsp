@@ -24,6 +24,7 @@
 				<th>Origem</th>
 				<th>Destino</th>
 				<th>Valor da Passagem</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +35,7 @@
 					<td><%= passagens.get(i).getOrigem() %></td>
 					<td><%= passagens.get(i).getDestino() %></td>
 					<td><%= passagens.get(i).getValorDaPassagem() %></td>
+					<td><a href="findPassagem?id=<%= passagens.get(i).getId() %>" class="botao">Editar</a></td>
 				</tr>
 			<% } %>
 		</tbody>

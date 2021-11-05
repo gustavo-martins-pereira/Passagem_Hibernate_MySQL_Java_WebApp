@@ -32,8 +32,15 @@ public class PassagemDAO {
 	public static List<Passagem> findAll() {
 		createEntityManager();
 		
-		String jpql = "SELECT p FROM Passagem p";
+		String jpql = "SELECT p FROM Passagem p ORDER BY nome_passageiro";
 		return em.createQuery(jpql, Passagem.class).getResultList();
+	}
+
+	//Retorna a Passagem pelo id
+	public static Passagem findById(Integer id) {
+		createEntityManager();
+		
+		return em.find(Passagem.class, id);
 	}
 	
 }
