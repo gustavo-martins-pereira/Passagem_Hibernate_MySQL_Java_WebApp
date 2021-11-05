@@ -26,7 +26,6 @@ public class PassagemDAO {
 		em.getTransaction().begin();
 		em.persist(passagem);
 		em.getTransaction().commit();
-		em.close();
 	}
 	
 	//Listar todas as Passagens

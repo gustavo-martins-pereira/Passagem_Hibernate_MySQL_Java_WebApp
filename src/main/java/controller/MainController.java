@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +30,7 @@ public class MainController extends HttpServlet {
 			break;
 		case "/insert":
 			novaPassagem(request, response);
+			response.sendRedirect("main");
 			
 			break;
 		default:
@@ -42,7 +44,10 @@ public class MainController extends HttpServlet {
 	protected void passagens(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Passagem> passagens = PassagemDAO.findAll();
 		
-		passagens.forEach(System.out::println);
+		//Encaminhar lista para o documento "passagem.jsp"
+		request.setAttribute("passagens", passagens);
+		RequestDispatcher rd = request.getRequestDispatcher("passagens.jsp");
+		rd.forward(request, response);
 	}
 	
 	//Nova Passagem
