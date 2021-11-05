@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.dao.PassagemDAO;
 import model.Passagem;
 
-@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/findPassagem"})
+@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -33,9 +33,9 @@ public class MainController extends HttpServlet {
 			response.sendRedirect("main");
 			
 			break;
-		case "/findPassagem":
-			procurarPassagem(request, response);
-			System.out.println(action);
+		case "/listarPassagem":
+			Passagem passagem = procurarPassagem(request, response);
+			listarPassagem(passagem, request, response);
 			
 			break;
 		default:
@@ -74,6 +74,19 @@ public class MainController extends HttpServlet {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		
 		return PassagemDAO.findById(id);
+	}
+	
+	private void listarPassagem(Passagem passagem, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Preencher os campos vazios do editar.jsp
+		request.setAttribute("id", passagem.getId());
+		request.setAttribute("nome", passagem.getNomeDoPassageiro());
+		request.setAttribute("origem", passagem.getOrigem());
+		request.setAttribute("destino", passagem.getDestino());
+		request.setAttribute("valor", passagem.getValorDaPassagem());
+		
+		//Encaminhar ao documento editar.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
+		rd.forward(request, response);
 	}
 	
 }

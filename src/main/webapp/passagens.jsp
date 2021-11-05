@@ -35,7 +35,7 @@
 					<td><%= passagens.get(i).getOrigem() %></td>
 					<td><%= passagens.get(i).getDestino() %></td>
 					<td><%= passagens.get(i).getValorDaPassagem() %></td>
-					<td><a href="findPassagem?id=<%= passagens.get(i).getId() %>" class="botao">Editar</a></td>
+					<td><a href="listarPassagem?id=<%= passagens.get(i).getId() %>" class="botao">Editar</a></td>
 				</tr>
 			<% } %>
 		</tbody>

@@ -35,16 +35,22 @@ h1 {
 	border-collapse: collapse;
 }
 
-#tabela th {
-	border: 1px solid #ddd;
-	padding: 10px;
-	text-align: left;
-	background-color: #66bbff;
-	color: #fff;
-}
-
-#tabela td {
-	border: 1px solid #ddd;
-	padding: 10px;
+	#tabela th {
+		border: 1px solid #ddd;
+		padding: 10px;
+		text-align: left;
+		background-color: #66bbff;
+		color: #fff;
+	}
 	
+	#tabela td {
+		border: 1px solid #ddd;
+		padding: 10px;
+		
+	}
+
+#id {
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #ff0000;
 }
