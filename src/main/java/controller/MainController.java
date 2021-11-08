@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.dao.PassagemDAO;
 import model.Passagem;
 
-@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem", "/update"})
+@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem", "/update", "/delete"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -35,11 +35,15 @@ public class MainController extends HttpServlet {
 				break;
 			case "/listarPassagem":
 				Passagem passagem = procurarPassagem(request, response);
-				listarPassagem(passagem, request, response);
+				listarPassagens(passagem, request, response);
 				
 				break;
 			case "/update":
 				atualizarPassagem(request, response);
+				
+				break;
+			case "/delete":
+				deletarPassagem(request, response);
 				
 				break;
 			default:
@@ -82,7 +86,7 @@ public class MainController extends HttpServlet {
 	}
 	
 	//Preenche os campos do editar.jsp
-	private void listarPassagem(Passagem passagem, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void listarPassagens(Passagem passagem, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Preencher os campos vazios do editar.jsp
 		request.setAttribute("id", passagem.getId());
 		request.setAttribute("nome", passagem.getNomeDoPassageiro());
@@ -104,6 +108,15 @@ public class MainController extends HttpServlet {
 		PassagemDAO.updatePassagem(id, request);
 		
 		//Redireciona para o documento passagens.jsp
+		response.sendRedirect("main");
+	}
+	
+	//Remove uma passagem
+	private void deletarPassagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		PassagemDAO.deletePassagem(id);
+		
 		response.sendRedirect("main");
 	}
 	

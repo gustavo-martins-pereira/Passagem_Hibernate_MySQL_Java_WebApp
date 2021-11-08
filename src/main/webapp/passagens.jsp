@@ -35,10 +35,16 @@
 					<td><%= passagens.get(i).getOrigem() %></td>
 					<td><%= passagens.get(i).getDestino() %></td>
 					<td><%= passagens.get(i).getValorDaPassagem() %></td>
-					<td><a href="listarPassagem?id=<%= passagens.get(i).getId() %>" class="botao">Editar</a></td>
+					<td>
+						<a href="listarPassagens?id=
+						<%= passagens.get(i).getId() %>" class="botao">Editar</a>
+						<a href="javascript: confirmar(<%= passagens.get(i).getId() %>)"
+						class="botao2">Excluir</a>
+					</td>
 				</tr>
 			<% } %>
 		</tbody>
 	</table>
+	<script type="text/javascript" src="scripts/confirmador.js"></script>
 </body>
 </html>
