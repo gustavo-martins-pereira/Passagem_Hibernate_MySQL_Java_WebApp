@@ -24,28 +24,28 @@ public class MainController extends HttpServlet {
 		String action = request.getServletPath();
 		
 		switch (action) {
-		case "/main":
-			passagens(request, response);
-			
-			break;
-		case "/insert":
-			novaPassagem(request, response);
-			response.sendRedirect("main");
-			
-			break;
-		case "/listarPassagem":
-			Passagem passagem = procurarPassagem(request, response);
-			listarPassagem(passagem, request, response);
-			
-			break;
-		case "/update":
-			atualizarPassagem(request, response);
-			
-			break;
-		default:
-			response.sendRedirect("index.html");
-			
-			break;
+			case "/main":
+				passagens(request, response);
+				
+				break;
+			case "/insert":
+				novaPassagem(request, response);
+				response.sendRedirect("main");
+				
+				break;
+			case "/listarPassagem":
+				Passagem passagem = procurarPassagem(request, response);
+				listarPassagem(passagem, request, response);
+				
+				break;
+			case "/update":
+				atualizarPassagem(request, response);
+				
+				break;
+			default:
+				response.sendRedirect("index.html");
+				
+				break;
 		}
 	}
 	
@@ -97,11 +97,14 @@ public class MainController extends HttpServlet {
 	
 	//Atualiza uma Passagem de acordo com os dados dos campos
 	private void atualizarPassagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
-		System.out.println(request.getParameter("nome"));
-		System.out.println(request.getParameter("origem"));
-		System.out.println(request.getParameter("destino"));
-		System.out.println(request.getParameter("valor"));
+		//Pega o Id da Passagem
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		//Atualiza a passagem
+		PassagemDAO.updatePassagem(id, request);
+		
+		//Redireciona para o documento passagens.jsp
+		response.sendRedirect("main");
 	}
 	
 }
