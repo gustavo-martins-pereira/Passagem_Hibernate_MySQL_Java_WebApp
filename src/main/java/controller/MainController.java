@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.dao.PassagemDAO;
 import model.Passagem;
 
-@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagem", "/update", "/delete"})
+@WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagens", "/update", "/delete"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -33,7 +33,7 @@ public class MainController extends HttpServlet {
 				response.sendRedirect("main");
 				
 				break;
-			case "/listarPassagem":
+			case "/listarPassagens":
 				Passagem passagem = procurarPassagem(request, response);
 				listarPassagens(passagem, request, response);
 				
