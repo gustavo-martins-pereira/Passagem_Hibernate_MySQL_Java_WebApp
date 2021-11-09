@@ -1,4 +1,4 @@
-package model;
+package br.com.etaure.model;
 
 import java.io.Serializable;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.thoughtworks.xstream.XStream;
 
 @Entity
 public class Passagem implements Serializable {
@@ -81,6 +83,10 @@ public class Passagem implements Serializable {
 	public String toString() {
 		return "Passagem [id=" + id + ", nomeDoPassageiro=" + nomeDoPassageiro + ", origem=" + origem + ", destino="
 				+ destino + ", valorDaPassagem=" + valorDaPassagem + "]";
+	}
+
+	public String toXML() {
+		return new XStream().toXML(this);
 	}
 	
 }

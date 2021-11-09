@@ -1,4 +1,4 @@
-package controller.dao;
+package br.com.etaure.controller.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.http.HttpServletRequest;
 
-import model.Passagem;
+import br.com.etaure.model.Passagem;
 
 public class PassagemDAO {
 

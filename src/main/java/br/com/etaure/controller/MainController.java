@@ -1,4 +1,4 @@
-package controller;
+package br.com.etaure.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.dao.PassagemDAO;
-import model.Passagem;
+import br.com.etaure.controller.dao.PassagemDAO;
+import br.com.etaure.model.Passagem;
 
 @WebServlet(urlPatterns = {"/MainController", "/main", "/insert", "/listarPassagens", "/update", "/delete"})
 public class MainController extends HttpServlet {
